@@ -1,5 +1,5 @@
 import AlertStyle from '../styles/style.js';
-export default async function Alert({ title = "Alert Box", body = "", background = "#2a223d", color = "#f2f2f2", status, showConfirmButton = true, showCancelButton = true, confirmButtonBackground = "#076407", cancelButtonBackground = "#a30000", cancelButtonColor = "white", confirmButtonColor = "white", writeOut, animate }) {
+export default async function Alert({ title = "Alert Box", body = "", background = "#2a223d", color = "#f2f2f2", icon, showConfirmButton = true, showCancelButton = true, confirmButtonText = "Confirm", cancelButtonText = "Cancel", confirmButtonBackground = "#076407", cancelButtonBackground = "#a30000", cancelButtonColor = "white", confirmButtonColor = "white", writeOut, animate }) {
     AlertStyle();
     const alertPromise = new Promise((resolve) => {
         const alertContainer = document.createElement("div");
@@ -20,7 +20,7 @@ export default async function Alert({ title = "Alert Box", body = "", background
             confirmBtn.style.background = confirmButtonBackground;
             confirmBtn.style.color = confirmButtonColor;
             confirmBtn.style.border = `1px solid ${confirmButtonColor}`;
-            confirmBtn.textContent = "Confirm";
+            confirmBtn.textContent = confirmButtonText;
             confirmBtn.onclick = () => {
                 alertContainer.remove();
                 resolve(true);
@@ -32,7 +32,7 @@ export default async function Alert({ title = "Alert Box", body = "", background
             cancelBtn.style.background = cancelButtonBackground;
             cancelBtn.style.color = cancelButtonColor;
             cancelBtn.style.border = `1px solid ${cancelButtonColor}`;
-            cancelBtn.textContent = "Cancel";
+            cancelBtn.textContent = cancelButtonText;
             cancelBtn.className = "cancel-btn";
             cancelBtn.onclick = () => {
                 alertContainer.remove();

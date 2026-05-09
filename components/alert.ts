@@ -8,9 +8,11 @@ interface AlertInt {
   body?: string,
   background?: string,
   color?: string,
-  status?: Status,
+  icon?: Status,
   showConfirmButton?: boolean,
   showCancelButton?: boolean,
+  confirmButtonText?: string,
+  cancelButtonText?: string,
   confirmButtonColor?: string,
   cancelButtonColor?: string,
   confirmButtonBackground?: string,
@@ -25,9 +27,11 @@ export default async function Alert({
   body = "",
   background = "#2a223d",
   color = "#f2f2f2",
-  status,
+  icon,
   showConfirmButton = true,
   showCancelButton = true,
+  confirmButtonText = "Confirm",
+  cancelButtonText = "Cancel",
   confirmButtonBackground = "#076407",
   cancelButtonBackground = "#a30000",
   cancelButtonColor = "white",
@@ -62,7 +66,7 @@ export default async function Alert({
       confirmBtn.style.background = confirmButtonBackground
       confirmBtn.style.color = confirmButtonColor
       confirmBtn.style.border = `1px solid ${confirmButtonColor}`
-      confirmBtn.textContent = "Confirm";
+      confirmBtn.textContent = confirmButtonText;
       confirmBtn.onclick = () => {
         alertContainer.remove();
         resolve(true);
@@ -75,7 +79,7 @@ export default async function Alert({
       cancelBtn.style.background = cancelButtonBackground
       cancelBtn.style.color = cancelButtonColor
       cancelBtn.style.border = `1px solid ${cancelButtonColor}`
-      cancelBtn.textContent = "Cancel";
+      cancelBtn.textContent = cancelButtonText;
       cancelBtn.className = "cancel-btn"; 
       cancelBtn.onclick = () => {
         alertContainer.remove();

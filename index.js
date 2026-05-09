@@ -1,11 +1,12 @@
 import Alert from './components/alert.js';
+import Toast from './components/toast.js';
 function Run() {
     Alert({
         title: "Connection Lost",
         body: "Please check your internet settings and try again.",
-        status: "failed",
+        icon: "failed",
         showCancelButton: true,
-        animate: "fade-in"
+        animate: "slide-in"
     }).then((result) => {
         // Check if the user actually confirmed
         if (result) {
@@ -19,9 +20,21 @@ function Run() {
         console.error("Alert failed to render:", err);
     });
 }
+function Test() {
+    Toast({
+        text: "testing"
+    });
+}
 const btn = document.getElementById('runBtn');
 if (btn) {
     btn.addEventListener('click', Run);
+}
+else {
+    console.error("Button 'runBtn' not found in the DOM");
+}
+const btn2 = document.getElementById('test');
+if (btn2) {
+    btn2.addEventListener('click', Test);
 }
 else {
     console.error("Button 'runBtn' not found in the DOM");
