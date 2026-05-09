@@ -33,3 +33,4 @@ cd MyAlert
 ```bash
 npm install
 ```
+> ___Note: I plan to make this CDN and later an NPM package___
