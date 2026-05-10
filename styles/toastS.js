@@ -3,21 +3,26 @@ export default function ToastStyle() {
     style.innerText = `
     .my-toast-Container {
       position: fixed;
+      bottom: 20px;
+      right: 30px;
+      height: auto;
+      max-height: 30vh;
       display: flex;
-      bottom: 10px;
-      right: 20px;
-      max-width: 300px;
-      justify-content: center;
-      align-items: center;;
-      z-index: 999;
-      padding: 5px;
-      font-family: Georgia, 'Times New Roman', Times, serif
+      flex-direction: column;
+      gap: 5px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      pointer-events: none;
     }
+
     .my-toast-Box {
       padding: 10px;
       text-align: center;
       border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      pointer-events: auto;
     }
+
     .slide-in {
       animation: slide-in .5s ease
     }

@@ -8,6 +8,8 @@ interface ToastInt {
   animate?: string,
   position?: string
 }
+const toastContainer = document.createElement("div");
+  document.body.appendChild(toastContainer)
 
 export default function Toast({
   text,
@@ -20,7 +22,6 @@ export default function Toast({
   
   ToastStyle();
   
-  const toastContainer = document.createElement("div");
   const toastBox = document.createElement("div");
   const toastText = document.createElement("span");
     
@@ -33,14 +34,13 @@ export default function Toast({
   
   toastBox.appendChild(toastText)
   toastContainer.appendChild(toastBox)
-  document.body.appendChild(toastContainer)
   
   const time = timer / 1000
   setTimeout(() => {
     toastBox.style.transition = `opacity ${time}s ease`;
     toastBox.style.opacity = '0'
     setTimeout(() => {
-     document.body.removeChild(toastContainer)
+     toastContainer.removeChild(toastBox)
     }, timer)
   }, timer)
 }
