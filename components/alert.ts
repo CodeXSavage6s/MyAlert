@@ -19,10 +19,17 @@ interface AlertInt {
   cancelButtonBackground?: string,
   writeOut?: boolean,
   animate?: Animations,
-  
 }
 
-export default async function Alert({
+let alertQueue: Promise<any> = Promise.resolve();
+
+export default async function Alert(config: AlertInt): Promise<boolean> {
+  const result = alertQueue.then(() => renderAlert(config));
+  alertQueue = result.catch(() => {});
+  return result;
+}
+
+async function renderAlert({
   title = "Alert Box",
   body = "",
   background = "#2a223d",
@@ -37,12 +44,12 @@ export default async function Alert({
   cancelButtonColor = "white",
   confirmButtonColor = "white",
   writeOut,
-  animate
+  animate = "default"
 }: AlertInt): Promise<boolean> {
   
   AlertStyle();
 
-  const alertPromise = new Promise<boolean>((resolve) => {
+  return new Promise<boolean>((resolve) => {
     const alertContainer = document.createElement("div");
     const alertBox = document.createElement("div");
     const alertTitle = document.createElement("h1");
@@ -54,7 +61,6 @@ export default async function Alert({
     alertTitle.className = 'my-alert-Title';
     btnContainer.className = 'my-alert-Btns';
     
-    
     alertBox.style.backgroundColor = background;
     alertBox.style.color = color;
 
@@ -63,9 +69,9 @@ export default async function Alert({
     
     if (showConfirmButton) {
       const confirmBtn = document.createElement("button");
-      confirmBtn.style.background = confirmButtonBackground
-      confirmBtn.style.color = confirmButtonColor
-      confirmBtn.style.border = `1px solid ${confirmButtonColor}`
+      confirmBtn.style.background = confirmButtonBackground;
+      confirmBtn.style.color = confirmButtonColor;
+      confirmBtn.style.border = `1px solid ${confirmButtonColor}`;
       confirmBtn.textContent = confirmButtonText;
       confirmBtn.onclick = () => {
         alertContainer.remove();
@@ -76,9 +82,9 @@ export default async function Alert({
 
     if (showCancelButton) {
       const cancelBtn = document.createElement("button");
-      cancelBtn.style.background = cancelButtonBackground
-      cancelBtn.style.color = cancelButtonColor
-      cancelBtn.style.border = `1px solid ${cancelButtonColor}`
+      cancelBtn.style.background = cancelButtonBackground;
+      cancelBtn.style.color = cancelButtonColor;
+      cancelBtn.style.border = `1px solid ${cancelButtonColor}`;
       cancelBtn.textContent = cancelButtonText;
       cancelBtn.className = "cancel-btn"; 
       cancelBtn.onclick = () => {
@@ -92,25 +98,4 @@ export default async function Alert({
     alertContainer.appendChild(alertBox);
     document.body.appendChild(alertContainer);
   });
-  
-  return alertPromise
-}
-
-
-
-async function handleDelete() {
-  try {
-    const confirmed = await Alert({
-      title: "Confirm Action",
-      body: "Are you sure?",
-    });
-
-    if (confirmed) {
-      console.log("Action confirmed");
-    } else {
-      console.log("Action cancelled");
-    }
-  } catch (error) {
-    console.error("Alert failed to render", error);
-  }
 }

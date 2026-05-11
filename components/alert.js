@@ -1,7 +1,13 @@
 import AlertStyle from '../styles/style.js';
-export default async function Alert({ title = "Alert Box", body = "", background = "#2a223d", color = "#f2f2f2", icon, showConfirmButton = true, showCancelButton = true, confirmButtonText = "Confirm", cancelButtonText = "Cancel", confirmButtonBackground = "#076407", cancelButtonBackground = "#a30000", cancelButtonColor = "white", confirmButtonColor = "white", writeOut, animate }) {
+let alertQueue = Promise.resolve();
+export default async function Alert(config) {
+    const result = alertQueue.then(() => renderAlert(config));
+    alertQueue = result.catch(() => { });
+    return result;
+}
+async function renderAlert({ title = "Alert Box", body = "", background = "#2a223d", color = "#f2f2f2", icon, showConfirmButton = true, showCancelButton = true, confirmButtonText = "Confirm", cancelButtonText = "Cancel", confirmButtonBackground = "#076407", cancelButtonBackground = "#a30000", cancelButtonColor = "white", confirmButtonColor = "white", writeOut, animate = "default" }) {
     AlertStyle();
-    const alertPromise = new Promise((resolve) => {
+    return new Promise((resolve) => {
         const alertContainer = document.createElement("div");
         const alertBox = document.createElement("div");
         const alertTitle = document.createElement("h1");
@@ -44,22 +50,4 @@ export default async function Alert({ title = "Alert Box", body = "", background
         alertContainer.appendChild(alertBox);
         document.body.appendChild(alertContainer);
     });
-    return alertPromise;
-}
-async function handleDelete() {
-    try {
-        const confirmed = await Alert({
-            title: "Confirm Action",
-            body: "Are you sure?",
-        });
-        if (confirmed) {
-            console.log("Action confirmed");
-        }
-        else {
-            console.log("Action cancelled");
-        }
-    }
-    catch (error) {
-        console.error("Alert failed to render", error);
-    }
 }
