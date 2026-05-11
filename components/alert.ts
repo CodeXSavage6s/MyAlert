@@ -8,7 +8,7 @@ interface AlertInt {
   body?: string,
   background?: string,
   color?: string,
-  icon?: Status,
+  icon: Status,
   showConfirmButton?: boolean,
   showCancelButton?: boolean,
   confirmButtonText?: string,
@@ -52,6 +52,7 @@ async function renderAlert({
   return new Promise<boolean>((resolve) => {
     const alertContainer = document.createElement("div");
     const alertBox = document.createElement("div");
+    const alertIcon = document.createElement("div")
     const alertTitle = document.createElement("h1");
     const alertBody = document.createElement("p");
     const btnContainer = document.createElement("div");
@@ -63,6 +64,12 @@ async function renderAlert({
     
     alertBox.style.backgroundColor = background;
     alertBox.style.color = color;
+    alertIcon.style.width = "100%"
+    alertIcon.style.height = "100px"
+    alertIcon.style.display = "flex"
+    alertIcon.style.padding = "0px"
+    alertIcon.style.margin = "0px"
+    alertIcon.style.justifyContent = "center"
 
     alertTitle.textContent = title;
     alertBody.textContent = body;
@@ -94,7 +101,15 @@ async function renderAlert({
       btnContainer.appendChild(cancelBtn);
     }
     
-    alertBox.append(alertTitle, alertBody, btnContainer);
+    lottie.loadAnimation({
+    container: alertIcon,
+    renderer: "svg",
+    loop: false,
+    autoplay: true,
+    path: `../animation/${icon}.json`
+  });
+
+    alertBox.append(alertIcon, alertTitle, alertBody, btnContainer);
     alertContainer.appendChild(alertBox);
     document.body.appendChild(alertContainer);
   });

@@ -5,7 +5,7 @@ function Run() {
     Alert({
         title: "Connection Lost",
         body: "Please check your internet settings and try again.",
-        icon: "failed",
+        icon: "error",
         showCancelButton: true,
         animate: "slide-in"
     }).then((result) => {
@@ -41,16 +41,3 @@ if (btn2) {
 } else {
     console.error("Button 'runBtn' not found in the DOM");
 }
-
-window.addEventListener('load', () => {
-  alert("tegsgsyu")
-  setInterval(() => {
-    Alert({
-        title: "Connection Lost",
-        body: "Please check your internet settings and try again.",
-        icon: "failed",
-        showCancelButton: true,
-        animate: "slide-in"
-    })
-  }, 1000)
-})
