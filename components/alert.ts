@@ -52,7 +52,7 @@ async function renderAlert({
   return new Promise<boolean>((resolve) => {
     const alertContainer = document.createElement("div");
     const alertBox = document.createElement("div");
-    const alertIcon = document.createElement("div")
+    const alertIcon = document.createElement("span")
     const alertTitle = document.createElement("h1");
     const alertBody = document.createElement("p");
     const btnContainer = document.createElement("div");
