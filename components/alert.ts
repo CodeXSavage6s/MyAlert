@@ -1,5 +1,5 @@
  import AlertStyle from '../styles/style.js';
-import lottie from 'lottie-web';
+//import lottie from 'lottie-web';
 
 type Status = "success" | "error" | "warning";
 type Animations = "default" | "fade-in" | "pop-up" | "slide-in";
@@ -82,8 +82,7 @@ async function renderAlert({
         alertContainer.remove();
         resolve(true);
       };
-      btnContainer.appendChild(confirmBtn
-
+      btnContainer.appendChild(confirmBtn);
     if (showCancelButton) {
       const cancelBtn = document.createElement("button");
       cancelBtn.style.background = cancelButtonBackground;

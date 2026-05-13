@@ -1,5 +1,4 @@
 import AlertStyle from '../styles/style.js';
-import lottie from 'lottie-web';
 let alertQueue = Promise.resolve();
 export default async function Alert(config) {
     const result = alertQueue.then(() => renderAlert(config));
