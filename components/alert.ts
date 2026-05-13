@@ -1,6 +1,7 @@
-import AlertStyle from '../styles/style.js';
+ import AlertStyle from '../styles/style.js';
+import lottie from 'lottie-web';
 
-type Status = "success" | "failed" | "pending";
+type Status = "success" | "error" | "warning";
 type Animations = "default" | "fade-in" | "pop-up" | "slide-in";
 
 interface AlertInt {
@@ -9,7 +10,6 @@ interface AlertInt {
   background?: string,
   color?: string,
   icon: Status,
-  showConfirmButton?: boolean,
   showCancelButton?: boolean,
   confirmButtonText?: string,
   cancelButtonText?: string,
@@ -35,7 +35,6 @@ async function renderAlert({
   background = "#2a223d",
   color = "#f2f2f2",
   icon,
-  showConfirmButton = true,
   showCancelButton = true,
   confirmButtonText = "Confirm",
   cancelButtonText = "Cancel",
@@ -74,8 +73,7 @@ async function renderAlert({
     alertTitle.textContent = title;
     alertBody.textContent = body;
     
-    if (showConfirmButton) {
-      const confirmBtn = document.createElement("button");
+    const confirmBtn = document.createElement("button");
       confirmBtn.style.background = confirmButtonBackground;
       confirmBtn.style.color = confirmButtonColor;
       confirmBtn.style.border = `1px solid ${confirmButtonColor}`;
@@ -84,8 +82,7 @@ async function renderAlert({
         alertContainer.remove();
         resolve(true);
       };
-      btnContainer.appendChild(confirmBtn);
-    }
+      btnContainer.appendChild(confirmBtn
 
     if (showCancelButton) {
       const cancelBtn = document.createElement("button");

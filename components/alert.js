@@ -1,11 +1,12 @@
 import AlertStyle from '../styles/style.js';
+import lottie from 'lottie-web';
 let alertQueue = Promise.resolve();
 export default async function Alert(config) {
     const result = alertQueue.then(() => renderAlert(config));
     alertQueue = result.catch(() => { });
     return result;
 }
-async function renderAlert({ title = "Alert Box", body = "", background = "#2a223d", color = "#f2f2f2", icon, showConfirmButton = true, showCancelButton = true, confirmButtonText = "Confirm", cancelButtonText = "Cancel", confirmButtonBackground = "#076407", cancelButtonBackground = "#a30000", cancelButtonColor = "white", confirmButtonColor = "white", writeOut, animate = "default" }) {
+async function renderAlert({ title = "Alert Box", body = "", background = "#2a223d", color = "#f2f2f2", icon, showCancelButton = true, confirmButtonText = "Confirm", cancelButtonText = "Cancel", confirmButtonBackground = "#076407", cancelButtonBackground = "#a30000", cancelButtonColor = "white", confirmButtonColor = "white", writeOut, animate = "default" }) {
     AlertStyle();
     return new Promise((resolve) => {
         const alertContainer = document.createElement("div");
@@ -28,18 +29,16 @@ async function renderAlert({ title = "Alert Box", body = "", background = "#2a22
         alertIcon.style.justifyContent = "center";
         alertTitle.textContent = title;
         alertBody.textContent = body;
-        if (showConfirmButton) {
-            const confirmBtn = document.createElement("button");
-            confirmBtn.style.background = confirmButtonBackground;
-            confirmBtn.style.color = confirmButtonColor;
-            confirmBtn.style.border = `1px solid ${confirmButtonColor}`;
-            confirmBtn.textContent = confirmButtonText;
-            confirmBtn.onclick = () => {
-                alertContainer.remove();
-                resolve(true);
-            };
-            btnContainer.appendChild(confirmBtn);
-        }
+        const confirmBtn = document.createElement("button");
+        confirmBtn.style.background = confirmButtonBackground;
+        confirmBtn.style.color = confirmButtonColor;
+        confirmBtn.style.border = `1px solid ${confirmButtonColor}`;
+        confirmBtn.textContent = confirmButtonText;
+        confirmBtn.onclick = () => {
+            alertContainer.remove();
+            resolve(true);
+        };
+        btnContainer.appendChild(confirmBtn);
         if (showCancelButton) {
             const cancelBtn = document.createElement("button");
             cancelBtn.style.background = cancelButtonBackground;
