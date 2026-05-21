@@ -1,9 +1,17 @@
-{
+/*{
   // Visit https://aka.ms/tsconfig to read more about this file
+  
   "compilerOptions": {
-    // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+    "target": "ES2020",
+    "module": "ES2020",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["**.ts"],
+
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -41,4 +49,24 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   }
+*/
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "verbatimModuleSyntax": true,
+    "sourceMap": false,
+    "declarationMap": false
+  },
+  "include": ["**/*.ts"]
 }

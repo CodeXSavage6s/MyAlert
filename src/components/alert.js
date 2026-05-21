@@ -1,4 +1,11 @@
 import AlertStyle from '../styles/style.js';
+import lottie from 'lottie-web';
+// In alert.ts, remove the top-level JSON imports and do:
+const animMap = {
+    success: '../../public/success.json',
+    error: '../../public/error.json',
+    warning: '../../public/warning.json'
+};
 let alertQueue = Promise.resolve();
 export default async function Alert(config) {
     const result = alertQueue.then(() => renderAlert(config));
@@ -56,7 +63,7 @@ async function renderAlert({ title = "Alert Box", body = "", background = "#2a22
             renderer: "svg",
             loop: false,
             autoplay: true,
-            path: `../animation/${icon}.json`
+            path: animMap[icon]
         });
         alertBox.append(alertIcon, alertTitle, alertBody, btnContainer);
         alertContainer.appendChild(alertBox);
