@@ -29,9 +29,9 @@ export default function AlertStyle() {
       font-weight: bold;
       font-family: serif;
     }
-    button {
-      border: none
-    }
+   .my-alert-Btns button {
+       border: none
+     }
     .slide-in {
       animation: slide-in .5s ease
     }
