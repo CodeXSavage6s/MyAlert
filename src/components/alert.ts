@@ -2,13 +2,13 @@
 //import * as lottie from 'lottie-web';
 import AlertStyle from '../styles/style.js';
 
-type Status = "success" | "error" | "warning";
-type Animations = "default" | "fade-in" | "pop-up" | "slide-in";
+export type Status = "success" | "error" | "warning";
+export type Animations = "default" | "fade-in" | "pop-up" | "slide-in";
 
 const animMap: Record<Status, string> = {
-  success: new URL('../../public/success.json', import.meta.url).toString(),
-  error: new URL('../../public/error.json', import.meta.url).toString(),
-  warning: new URL('../../public/warning.json', import.meta.url).toString()
+  success: new URL('../assets/success.json', import.meta.url).toString(),
+  error: new URL('../assets/error.json', import.meta.url).toString(),
+  warning: new URL('../assets/warning.json', import.meta.url).toString()
 };
 
 // Lazily resolved when the CDN script first loads; null in SSR/non-browser environments.
@@ -40,7 +40,7 @@ function lottieReady(): Promise<boolean> {
 // Inject styles only once
 let stylesInjected = false;
 
-interface AlertInt {
+export interface AlertInt {
   title?: string,
   body?: string,
   background?: string,

@@ -1,6 +1,6 @@
-type Status = "success" | "error" | "warning";
-type Animations = "default" | "fade-in" | "pop-up" | "slide-in";
-interface AlertInt {
+export type Status = "success" | "error" | "warning";
+export type Animations = "default" | "fade-in" | "pop-up" | "slide-in";
+export interface AlertInt {
     title?: string;
     body?: string;
     background?: string;
@@ -17,4 +17,3 @@ interface AlertInt {
     animate?: Animations;
 }
 export default function Alert(config: AlertInt): Promise<boolean>;
-export {};

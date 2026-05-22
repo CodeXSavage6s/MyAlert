@@ -1,9 +1,9 @@
 //import * as lottie from 'lottie-web';
 import AlertStyle from '../styles/style.js';
 const animMap = {
-    success: new URL('../../public/success.json', import.meta.url).toString(),
-    error: new URL('../../public/error.json', import.meta.url).toString(),
-    warning: new URL('../../public/warning.json', import.meta.url).toString()
+    success: new URL('../assets/success.json', import.meta.url).toString(),
+    error: new URL('../assets/error.json', import.meta.url).toString(),
+    warning: new URL('../assets/warning.json', import.meta.url).toString()
 };
 // Lazily resolved when the CDN script first loads; null in SSR/non-browser environments.
 let _lottieReady = null;
