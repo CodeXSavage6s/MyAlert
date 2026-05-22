@@ -2,7 +2,11 @@
   "name": "my-alert",
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern TypeScript project in Termux",
+  "description": "Customizable TypeScript alert and toast library with animations",
+  "files": [
+  "dist",
+  "public"
+],
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -20,7 +24,15 @@
     "type": "git",
     "url": "git+https://github.com/CodeXSavage6s/MyAlert.git"
   },
-  "keywords": [],
+  "keywords": [
+  "alert",
+  "toast",
+  "modal",
+  "typescript",
+  "notification",
+  "popup",
+  "ui"
+],
   "author": "",
   "license": "ISC",
   "bugs": {
